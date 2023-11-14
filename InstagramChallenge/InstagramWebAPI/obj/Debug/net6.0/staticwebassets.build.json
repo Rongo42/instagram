@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "EuRFgAcVHSPnBolGnB8QNCb82sOcB8HrxLh2UcgAUzw=",
+  "Source": "InstagramWebAPI",
+  "BasePath": "_content/InstagramWebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
