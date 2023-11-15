@@ -14,7 +14,7 @@ namespace RepositoryLayer.Repository
     {
         #region property
         private readonly ApplicationDbContext _applicationDbContext;
-        private DbSet<T> entities;
+        protected DbSet<T> entities;
         #endregion
         #region Constructor
         public Repository(ApplicationDbContext applicationDbContext)

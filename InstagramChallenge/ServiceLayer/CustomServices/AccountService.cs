@@ -1,5 +1,6 @@
 ﻿using DomainLayer.Models;
 using RepositoryLayer.IRepository;
+using ServiceLayer.Business.Encription;
 using ServiceLayer.ICustomServices;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,16 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.CustomServices
 {
-    public class AccountService : ICustomService <Account>
+    public class AccountService : IAccountService
     {
-        private readonly IRepository<Account> _AccountRepository;
+        private readonly IAccountRepository _AccountRepository;
 
-        public AccountService (IRepository<Account> accountRepository)
+        private readonly IEncryption _encryption;
+
+        public AccountService (IAccountRepository accountRepository, IEncryption encryption)
         {
             _AccountRepository = accountRepository;
+            _encryption = encryption;
         }
 
         public void Delete(Account entity)
@@ -108,6 +112,14 @@ namespace ServiceLayer.CustomServices
             {
                 throw;
             }
+        }
+
+        public bool TryLogin(Account entity, out Account verifiedAccount)
+        {
+            verifiedAccount = _AccountRepository.GetByAccountName(entity.Username);
+
+            return (verifiedAccount == null) ? false : _encryption.Verify(entity.Password, verifiedAccount.Password);
+
         }
     }
 }

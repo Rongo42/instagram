@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "IrYfuf9Nxgsc1tSZi+e5VEh+yz3j7UcB4gruyGceBfGCgNiEiUi1Udd0kZmm9EVcmDtUJy0FUm71KbwVaFTGZQ==",
+  "dgSpecHash": "HG+Wwr0LDyntss5Cd7XImcd9kmgfEk5dKDKO+6lrm8y0dJGpbunxJ0KhR8Fe+5XDSnW1f8JbpQpBFwHMkMoqlA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Franco\\repos\\instagramChallenge\\instagram\\InstagramChallenge\\InstagramWebAPI\\InstagramWebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Franco\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Franco\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\Franco\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Franco\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\Franco\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.25\\microsoft.aspnetcore.authentication.jwtbearer.6.0.25.nupkg.sha512",
     "C:\\Users\\Franco\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Franco\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.1\\microsoft.data.sqlclient.5.1.1.nupkg.sha512",
     "C:\\Users\\Franco\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.1.0\\microsoft.data.sqlclient.sni.runtime.5.1.0.nupkg.sha512",
