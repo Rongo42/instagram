@@ -1,5 +1,6 @@
 ﻿using DomainLayer.Data;
 using DomainLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace InstagramWebAPI.Controllers
             _applicationDbContext = applicationDbContext;
         }
 
+        [Authorize]
         [HttpGet(nameof(GetUserById))]
         public IActionResult GetUserById(int id) 
         {
@@ -30,6 +32,7 @@ namespace InstagramWebAPI.Controllers
             return (obj == null) ? NotFound() : Ok(obj);
         }
 
+        [Authorize]
         [HttpGet(nameof(GetAllUsers))]
         public IActionResult GetAllUsers() 
         {
@@ -38,6 +41,7 @@ namespace InstagramWebAPI.Controllers
             return (obj == null) ? NotFound() : Ok(obj);
         }
 
+        [Authorize]
         [HttpPost(nameof(CreateUser))]
         public IActionResult CreateUser(User user)
         {
@@ -52,6 +56,7 @@ namespace InstagramWebAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost(nameof(UpdateUser))]
         public IActionResult UpdateUser(User user)
         {
@@ -66,6 +71,7 @@ namespace InstagramWebAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete(nameof(DeleteUser))]
         public IActionResult DeleteUser(User user) 
         {

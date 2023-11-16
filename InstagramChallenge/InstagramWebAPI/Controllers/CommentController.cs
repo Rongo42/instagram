@@ -1,5 +1,6 @@
 ﻿using DomainLayer.Data;
 using DomainLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace InstagramWebAPI.Controllers
             _applicationDbContext = applicationDbContext;
         }
 
+        [Authorize]
         [HttpGet(nameof(GetCommentById))]
         public IActionResult GetCommentById(int id)
         {
@@ -30,6 +32,7 @@ namespace InstagramWebAPI.Controllers
             return (obj == null) ? NotFound() : Ok(obj);
         }
 
+        [Authorize]
         [HttpGet(nameof(GetAllComments))]
         public IActionResult GetAllComments()
         {
@@ -38,6 +41,7 @@ namespace InstagramWebAPI.Controllers
             return (obj == null) ? NotFound() : Ok(obj);
         }
 
+        [Authorize]
         [HttpPost(nameof(CreateComment))]
         public IActionResult CreateComment(Comment comment)
         {
@@ -52,6 +56,7 @@ namespace InstagramWebAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost(nameof(UpdateComment))]
         public IActionResult UpdateComment(Comment comment)
         {
@@ -66,6 +71,7 @@ namespace InstagramWebAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete(nameof(DeleteComment))]
         public IActionResult DeleteComment(Comment comment)
         {

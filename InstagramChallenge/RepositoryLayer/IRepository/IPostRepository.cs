@@ -9,7 +9,7 @@ namespace RepositoryLayer.IRepository
 {
     public interface IPostRepository : IRepository<Post>
     {
-        public bool LikeUnlike(User user, Post post, bool like);
+        public Like LikeUnlike(User user, Post post, bool like);
 
     }
 }

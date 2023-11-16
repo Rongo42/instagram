@@ -15,27 +15,9 @@ namespace RepositoryLayer.Repository
         {
         }
 
-        public bool LikeUnlike(User user, Post post, bool like)
+        public Like LikeUnlike(User user, Post post, bool like)
         {
-            if (post != null)
-            {
-                var _found = post.Likes.Find(c => c.Id == user.Id);
-
-                if (_found != null)
-                {
-                    if (like) { return false; }
-                    else { return true; }
-                }
-                else
-                {
-                    if (like) { return true; }
-                    else { return false; }
-                }
-            }
-            else
-            {
-                return false;
-            }
+            return null;
         }
     }
 }
