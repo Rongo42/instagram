@@ -91,3 +91,5 @@ C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramW
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\ServiceLayer.dll
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\RepositoryLayer.pdb
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\ServiceLayer.pdb
+C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\BCrypt.Net-Next.dll
+C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

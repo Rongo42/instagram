@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DomainLayer.Models
 {
-    public class Comment : BaseEntity
+    public class Like
     {
-        public string Message;
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

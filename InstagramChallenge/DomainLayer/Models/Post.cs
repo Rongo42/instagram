@@ -8,10 +8,11 @@ namespace DomainLayer.Models
 {
     public class Post : BaseEntity
     {
+        public string Description { get; set; }
 
-        public string? Description { get; set; }
+        public List<Comment> Comments { get; set; }
 
-        public List<Comment>? Comments { get; set; }
+        public List<Like> Likes { get; set; }
     }
 
 }
