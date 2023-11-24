@@ -7,19 +7,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ServiceLayer.Business.Encription.BCryptEncryption;
 
 namespace ServiceLayer.CustomServices
 {
+    //Implements the custom Account Service Interface in order to define the TryLogin method, which is not declared in the generic interface
     public class AccountService : IAccountService
     {
         private readonly IAccountRepository _AccountRepository;
 
-        private readonly IEncryption _encryption;
-
-        public AccountService (IAccountRepository accountRepository, IEncryption encryption)
+        public AccountService (IAccountRepository accountRepository)
         {
             _AccountRepository = accountRepository;
-            _encryption = encryption;
         }
 
         public void Delete(Account entity)
@@ -72,23 +71,9 @@ namespace ServiceLayer.CustomServices
             {
                 if (entity != null)
                 {
-                    _AccountRepository.Insert (entity);
-                    _AccountRepository.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public void Remove(Account entity)
-        {
-            try
-            {
-                if (entity != null)
-                {
-                    _AccountRepository.Remove (entity);
+                    //Password uses an Extension Method of the string type in order to encrypt the input password
+                    entity.Password = entity.Password.Encrypt();
+                    _AccountRepository.Insert(entity);
                     _AccountRepository.SaveChanges();
                 }
             }
@@ -116,9 +101,12 @@ namespace ServiceLayer.CustomServices
 
         public bool TryLogin(Account entity, out Account verifiedAccount)
         {
+            //Retrieving the account name inputed to try and login
             verifiedAccount = _AccountRepository.GetByAccountName(entity.Username);
 
-            return (verifiedAccount == null) ? false : _encryption.Verify(entity.Password, verifiedAccount.Password);
+            //It logs in if the verification checks out, uses shortwire in case the obtained account equals null
+            //Password uses an Extension Method of the string type in order to statically verify if both match
+            return verifiedAccount != null && entity.Password.Verify(verifiedAccount.Password);
 
         }
     }

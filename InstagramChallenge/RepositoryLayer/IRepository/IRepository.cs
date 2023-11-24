@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace RepositoryLayer.IRepository
 {
+    //Standard repository interface for CRUD operations
     public interface IRepository <T> where T : BaseEntity
     {
         IEnumerable<T> GetAll ();
@@ -15,7 +16,6 @@ namespace RepositoryLayer.IRepository
         void Insert(T entity);
         void Update (T entity);
         void Delete (T entity);
-        void Remove (T entity);
         void SaveChanges ();
 
     }

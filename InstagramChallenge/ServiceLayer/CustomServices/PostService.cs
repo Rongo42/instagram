@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.CustomServices
 {
+    //Implements the generic Custom Service in order to do CRUD operations
     public class PostService : ICustomService<Post>
     {
         private readonly IRepository<Post> _PostRepository;
@@ -79,22 +80,6 @@ namespace ServiceLayer.CustomServices
             }
         }
 
-        public void Remove(Post entity)
-        {
-            try
-            {
-                if (entity != null)
-                {
-                    _PostRepository.Remove(entity);
-                    _PostRepository.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         public void Update(Post entity)
         {
             try
@@ -110,5 +95,6 @@ namespace ServiceLayer.CustomServices
                 throw;
             }
         }
+
     }
 }

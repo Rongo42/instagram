@@ -14,7 +14,7 @@ namespace DomainLayer.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder); 
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet <User> Users { get; set; }
@@ -22,5 +22,13 @@ namespace DomainLayer.Data
         public DbSet <Post> Posts { get; set; }
 
         public DbSet <Account> Accounts { get; set; }
+
+        public DbSet <Comment> Comments { get; set; }
+
+        public DbSet <Like> Likes { get; set; }
+
+        public DbSet <Follows> Followss { get; set; }
+
+
     }
 }

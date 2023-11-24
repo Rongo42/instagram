@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.Business.Encription
 {
-    public class BCryptEncryption : IEncryption
+    public static class BCryptEncryption 
     {
-        public string Encrypt(string plaintext)
+        public static string Encrypt(this string plaintext)
         {
+            //Encrypting the string argument utilizing the SHA512 algorythm
             return BCrypt.Net.BCrypt.EnhancedHashPassword(plaintext, BCrypt.Net.HashType.SHA512);
         }
 
-        public bool Verify(string plaintext, string hashedText)
+        public static bool Verify(this string plaintext, string hashedText)
         {
+            //Utilizing SHA512 algorythm to verify if the two arguments match
             return BCrypt.Net.BCrypt.EnhancedVerify(plaintext, hashedText, BCrypt.Net.HashType.SHA512);
         }
     }

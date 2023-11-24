@@ -10,7 +10,7 @@ namespace DomainLayer.Models
     {
         public string NickName { get; set; }
 
-        public List<Follower> Followers { get; set; }
+        public List<User> Followers { get; set; }
 
         public Account Account { get; set; }
     }

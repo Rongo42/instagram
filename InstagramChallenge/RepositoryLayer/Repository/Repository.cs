@@ -38,7 +38,7 @@ namespace RepositoryLayer.Repository
         {
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
             entities.Add(entity);
             _applicationDbContext.SaveChanges();
@@ -48,7 +48,7 @@ namespace RepositoryLayer.Repository
         {
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
             entities.Update(entity);
             _applicationDbContext.SaveChanges();
@@ -58,23 +58,21 @@ namespace RepositoryLayer.Repository
         {
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
             entities.Remove(entity);
             _applicationDbContext.SaveChanges();
-        }
-
-        public void Remove(T entity)
-        {
-            if(entity == null) {
-                throw new ArgumentNullException("entity");
-            }
-            entities.Remove(entity);
         }
 
         public void SaveChanges()
         {
             _applicationDbContext.SaveChanges();
+        }
+
+        public void Something()
+        {
+            _applicationDbContext.Likes.FromSqlRaw("");
+            entities.FromSqlRaw("");
         }
     }
 }

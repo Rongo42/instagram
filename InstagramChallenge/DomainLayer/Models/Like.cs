@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DomainLayer.Models
 {
-    public class Like
+    public class Like : BaseEntity
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public Post Post { get; set; }
+
+        public User Liker { get; set; }
     }
 }

@@ -10,6 +10,7 @@ using System.Linq.Expressions;
 
 namespace ServiceLayer.CustomServices
 {
+    //Implements the generic Custom Service in order to do CRUD operations
     public class UserService : ICustomService <User>
     {
         private readonly IRepository<User> _userRepository;
@@ -95,20 +96,5 @@ namespace ServiceLayer.CustomServices
             }
         }
         
-        public void Remove(User user)
-        {
-            try
-            {
-                if (user != null)
-                {
-                    _userRepository.Remove(user);
-                    _userRepository.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
     }
 }

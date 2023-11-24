@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace RepositoryLayer.IRepository
 {
+    //
     public interface IAccountRepository : IRepository<Account>
     {
         public Account GetByAccountName(string accountName);

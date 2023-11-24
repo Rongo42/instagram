@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace RepositoryLayer.IRepository
 {
-    public interface IPostRepository : IRepository<Post>
+    public interface IUserRepository : IRepository<User>
     {
-        public Like LikeUnlike(User user, Post post, bool like);
+        public void Follow(User follower, User followed);
 
+        public void Unfollow(User follower, User followed);
     }
 }

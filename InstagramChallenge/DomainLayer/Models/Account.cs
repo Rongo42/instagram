@@ -8,6 +8,11 @@ namespace DomainLayer.Models
 {
     public class Account : BaseEntity
     {
+        public Account(string username, string password) 
+        {
+            Username = username;
+            Password = password;
+        }
         public string Username { get; set; }
 
         public string Password { get; set; }

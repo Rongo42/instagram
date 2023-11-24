@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace DomainLayer.Models
 {
-    public class Follower
+    public class Follows
     {
         public int Id { get; set; }
-        public User Data { get; set; }
+
+        public int OwnerId { get; set; }
+
+        public int FollowerId { get; set; }
     }
 }

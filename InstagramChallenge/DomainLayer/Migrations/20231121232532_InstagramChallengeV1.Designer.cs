@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DomainLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231113183434_OnionArchitectureV1")]
-    partial class OnionArchitectureV1
+    [Migration("20231121232532_InstagramChallengeV1")]
+    partial class InstagramChallengeV1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,10 +69,6 @@ namespace DomainLayer.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
@@ -83,7 +79,80 @@ namespace DomainLayer.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Follower", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("FollowerDataId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FollowerDataId");
+
+                    b.ToTable("Followers");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Follows", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("FollowerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OwnerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FollowerId");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Followss");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Like", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("LikerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LikerId");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Post", b =>
@@ -98,7 +167,6 @@ namespace DomainLayer.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -107,7 +175,12 @@ namespace DomainLayer.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("OwnerId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Posts");
                 });
@@ -120,7 +193,7 @@ namespace DomainLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountId")
+                    b.Property<int?>("AccountId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -133,17 +206,11 @@ namespace DomainLayer.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NickName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Users");
                 });
@@ -155,17 +222,59 @@ namespace DomainLayer.Migrations
                         .HasForeignKey("PostId");
                 });
 
+            modelBuilder.Entity("DomainLayer.Models.Follower", b =>
+                {
+                    b.HasOne("DomainLayer.Models.User", "FollowerData")
+                        .WithMany("Followers")
+                        .HasForeignKey("FollowerDataId");
+
+                    b.Navigation("FollowerData");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Follows", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Follower", "Follower")
+                        .WithMany()
+                        .HasForeignKey("FollowerId");
+
+                    b.HasOne("DomainLayer.Models.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
+
+                    b.Navigation("Follower");
+
+                    b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Like", b =>
+                {
+                    b.HasOne("DomainLayer.Models.User", "Liker")
+                        .WithMany()
+                        .HasForeignKey("LikerId");
+
+                    b.HasOne("DomainLayer.Models.Post", "Post")
+                        .WithMany("Likes")
+                        .HasForeignKey("PostId");
+
+                    b.Navigation("Liker");
+
+                    b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Post", b =>
+                {
+                    b.HasOne("DomainLayer.Models.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
+
+                    b.Navigation("Owner");
+                });
+
             modelBuilder.Entity("DomainLayer.Models.User", b =>
                 {
                     b.HasOne("DomainLayer.Models.Account", "Account")
                         .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DomainLayer.Models.User", null)
-                        .WithMany("Followers")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("AccountId");
 
                     b.Navigation("Account");
                 });
@@ -173,6 +282,8 @@ namespace DomainLayer.Migrations
             modelBuilder.Entity("DomainLayer.Models.Post", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Likes");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.User", b =>

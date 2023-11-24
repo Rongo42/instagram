@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.CustomServices
 {
+    //Implements the generic Custom Service in order to do CRUD operations
     public class CommentService : ICustomService <Comment>
     {
         private readonly IRepository<Comment> _CommentRepository;
@@ -69,23 +70,9 @@ namespace ServiceLayer.CustomServices
             {
                 if (entity != null)
                 {
+                    //If the Comment message length is longer than 100, it should be truncated.
+                    entity.Message = entity.Message?.Length > 100 ? entity.Message[..100] : entity.Message;
                     _CommentRepository.Insert(entity);
-                    _CommentRepository.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public void Remove(Comment entity)
-        {
-            try
-            {
-                if (entity != null)
-                {
-                    _CommentRepository.Remove(entity);
                     _CommentRepository.SaveChanges();
                 }
             }
