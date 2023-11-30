@@ -95,6 +95,20 @@ namespace ServiceLayer.CustomServices
                 throw;
             }
         }
+
+        public object? GetUserInfo(int id)
+        {
+            User user = Get(id);
+            
+            if (user != null)
+            {
+                 return (user.NickName, user.CreatedDate, user.Followers);
+            }
+            else
+            {
+                return null;
+            }
+        }
         
     }
 }

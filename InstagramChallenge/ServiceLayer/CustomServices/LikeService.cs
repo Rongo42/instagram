@@ -19,7 +19,6 @@ namespace ServiceLayer.CustomServices
             _LikeRepository = likeRepository;
         }
 
-        //Delete handles the Unlike requirement
         public void Delete(Like entity)
         {
             try
@@ -64,7 +63,6 @@ namespace ServiceLayer.CustomServices
             }
         }
 
-        //Insert handles the Like requirement
         public void Insert(Like entity)
         {
             try
@@ -94,6 +92,23 @@ namespace ServiceLayer.CustomServices
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        public void LikeUnlike(Like entity)
+        {
+            //We obtain the Like entity based on the one received as parameter
+            var obj = Get(entity.Id);
+
+            //If the entity exists then it should be removed
+            if (obj != null)
+            {
+                Delete(obj);
+            }
+            //If it does not exist then it should be created using the inputed parameter
+            else
+            {
+                Insert(entity);
             }
         }
     }

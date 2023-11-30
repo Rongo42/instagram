@@ -13,13 +13,13 @@ namespace InstagramWebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly ICustomService<User> _customService;
+        private readonly IUserService _userService;
 
         private readonly ApplicationDbContext _applicationDbContext;
 
-        public UserController (ICustomService<User> customService, ApplicationDbContext applicationDbContext)
+        public UserController (IUserService userService, ApplicationDbContext applicationDbContext)
         {
-            _customService = customService;
+            _userService = userService;
             _applicationDbContext = applicationDbContext;
         }
 
@@ -27,7 +27,7 @@ namespace InstagramWebAPI.Controllers
         [HttpGet(nameof(GetUserById))]
         public IActionResult GetUserById(int id) 
         {
-            var obj = _customService.Get(id);
+            var obj = _userService.Get(id);
 
             return (obj == null) ? NotFound() : Ok(obj);
         }
@@ -36,7 +36,7 @@ namespace InstagramWebAPI.Controllers
         [HttpGet(nameof(GetAllUsers))]
         public IActionResult GetAllUsers() 
         {
-            var obj = _customService.GetAll();
+            var obj = _userService.GetAll();
 
             return (obj == null) ? NotFound() : Ok(obj);
         }
@@ -47,7 +47,7 @@ namespace InstagramWebAPI.Controllers
         {
             if (user != null)
             {
-                _customService.Insert(user);
+                _userService.Insert(user);
                 return Ok("Created Successfully");
             }
             else
@@ -62,7 +62,7 @@ namespace InstagramWebAPI.Controllers
         {
             if (user != null)
             {
-                _customService.Update(user);
+                _userService.Update(user);
                 return Ok("Updated successfully");
             }
             else
@@ -77,8 +77,24 @@ namespace InstagramWebAPI.Controllers
         {
             if (user != null)
             {
-                _customService.Delete(user);
+                _userService.Delete(user);
                 return Ok("Deleted successfully");
+            }
+            else
+            {
+                return BadRequest("Something went wrong");
+            }
+        }
+
+        [Authorize]
+        [HttpGet(nameof(GetUserInfo))]
+        public IActionResult GetUserInfo(int id)
+        {
+            var obj = _userService.GetUserInfo(id);
+            
+            if (obj != null)
+            {
+                return Ok(obj);
             }
             else
             {

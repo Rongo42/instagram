@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.ICustomServices
 {
-    public interface IUserService : ICustomService<User>
+    public interface ILikeService : ICustomService<Like>
     {
-        public object GetUserInfo(int id);
+        public void LikeUnlike(Like entity);
     }
 }

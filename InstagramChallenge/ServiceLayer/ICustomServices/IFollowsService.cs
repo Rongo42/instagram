@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.ICustomServices
 {
-    public interface IUserService : ICustomService<User>
+    public interface IFollowsService : ICustomService<Follows>
     {
-        public object GetUserInfo(int id);
+        public void FollowUnfollow(User follower, User followed);
+
+        public IEnumerable<Follows> GetFollowersByUserId(int Id);
     }
 }

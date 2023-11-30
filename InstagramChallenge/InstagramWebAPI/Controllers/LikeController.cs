@@ -11,13 +11,13 @@ namespace InstagramWebAPI.Controllers
     [ApiController]
     public class LikeController : ControllerBase
     {
-        private readonly ICustomService<Like> _customService;
+        private readonly ILikeService _likeService;
 
         private readonly ApplicationDbContext _applicationDbContext;
 
-        public LikeController(ICustomService<Like> customService, ApplicationDbContext applicationDbContext)
+        public LikeController(ILikeService likeService, ApplicationDbContext applicationDbContext)
         {
-            _customService = customService;
+            _likeService = likeService;
             _applicationDbContext = applicationDbContext;
         }
 
@@ -25,7 +25,7 @@ namespace InstagramWebAPI.Controllers
         [HttpGet(nameof(GetLikeById))]
         public IActionResult GetLikeById(int Id)
         {
-            var obj = _customService.Get(Id);
+            var obj = _likeService.Get(Id);
 
             return (obj == null) ? NotFound() : Ok(obj);
         }
@@ -34,7 +34,7 @@ namespace InstagramWebAPI.Controllers
         [HttpGet(nameof(GetAllLikes))]
         public IActionResult GetAllLikes()
         {
-            var obj = _customService.GetAll();
+            var obj = _likeService.GetAll();
 
             return (obj == null) ? NotFound() : Ok(obj);
         }
@@ -43,17 +43,15 @@ namespace InstagramWebAPI.Controllers
         [HttpPost(nameof(LikeUnlike))]
         public IActionResult LikeUnlike(Like like) 
         {
-            var obj = _customService.Get(like.Id);
-
-            if (obj == null)
+            if (like != null)
             {
-                _customService.Insert(like);
-                return Ok("Liked succesfully");
+                _likeService.LikeUnlike(like);
+
+                return Ok("Like action executed successfully");
             }
             else
             {
-                _customService.Delete(like);
-                return Ok("Unliked succesfully");
+                return BadRequest("Something went wrong");
             }
         }
 
