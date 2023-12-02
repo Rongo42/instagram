@@ -45,7 +45,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //Injecting generic repository
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 //Injecting custom repositories
-builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 //Injecting custom services
 builder.Services.AddScoped<ICustomService<User>, UserService>();
