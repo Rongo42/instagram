@@ -46,11 +46,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 //Injecting custom repositories
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<IFollowsRepository, FollowsRepository>();
 //Injecting custom services
-builder.Services.AddScoped<ICustomService<User>, UserService>();
 builder.Services.AddScoped<ICustomService<Post>, PostService>();
-builder.Services.AddScoped<ICustomService<Account>, AccountService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<ICustomService<Comment>, CommentService>();
+builder.Services.AddScoped<IFollowsService, FollowsService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ILikeService, LikeService>();
 #endregion
 
 var app = builder.Build();

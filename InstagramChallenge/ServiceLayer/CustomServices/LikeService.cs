@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ServiceLayer.CustomServices
 {
     //Implements the generic Custom Service in order to do CRUD operations
-    public class LikeService : ICustomService<Like>
+    public class LikeService : ILikeService
     {
         private readonly IRepository<Like> _LikeRepository;
 

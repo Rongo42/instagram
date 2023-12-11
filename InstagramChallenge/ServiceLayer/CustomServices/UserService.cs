@@ -11,7 +11,7 @@ using System.Linq.Expressions;
 namespace ServiceLayer.CustomServices
 {
     //Implements the generic Custom Service in order to do CRUD operations
-    public class UserService : ICustomService <User>
+    public class UserService : IUserService
     {
         private readonly IRepository<User> _userRepository;
 
@@ -96,7 +96,7 @@ namespace ServiceLayer.CustomServices
             }
         }
 
-        public object? GetUserInfo(int id)
+        public object GetUserInfo(int id)
         {
             User user = Get(id);
             
