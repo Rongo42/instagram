@@ -19,14 +19,11 @@ namespace InstagramWebAPI.Controllers
     {
         private readonly IAccountService _accountService;
 
-        private readonly ApplicationDbContext _applicationDbContext;
-
         private readonly IConfiguration _config;
 
-        public AccountController(IAccountService accountService, ApplicationDbContext applicationDbContext, IConfiguration config)
+        public AccountController(IAccountService accountService, IConfiguration config)
         {
             _accountService = accountService;
-            _applicationDbContext = applicationDbContext;
             _config = config;
         }
 

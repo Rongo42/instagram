@@ -8,7 +8,9 @@ namespace DomainLayer.Models
 {
     public class Post : BaseEntity
     {
-        public User? Owner { get; set; }
+        public int OwnerId { get; set; }
+
+        public User Owner { get; set; } = null!;
 
         public string Description { get; set; }
 

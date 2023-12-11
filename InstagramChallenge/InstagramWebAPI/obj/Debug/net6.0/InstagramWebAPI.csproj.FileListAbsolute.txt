@@ -7,7 +7,9 @@ C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramW
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\InstagramWebAPI.pdb
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\Azure.Core.dll
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\Azure.Identity.dll
+C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\BCrypt.Net-Next.dll
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\Humanizer.dll
+C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
@@ -64,6 +66,12 @@ C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramW
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\DomainLayer.dll
+C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\RepositoryLayer.dll
+C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\ServiceLayer.dll
+C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\DomainLayer.pdb
+C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\RepositoryLayer.pdb
+C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\ServiceLayer.pdb
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\obj\Debug\net6.0\InstagramWebAPI.csproj.AssemblyReference.cache
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\obj\Debug\net6.0\InstagramWebAPI.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\obj\Debug\net6.0\InstagramWebAPI.AssemblyInfoInputs.cache
@@ -85,11 +93,3 @@ C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramW
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\obj\Debug\net6.0\InstagramWebAPI.pdb
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\obj\Debug\net6.0\InstagramWebAPI.genruntimeconfig.cache
 C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\obj\Debug\net6.0\ref\InstagramWebAPI.dll
-C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\DomainLayer.dll
-C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\DomainLayer.pdb
-C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\RepositoryLayer.dll
-C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\ServiceLayer.dll
-C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\RepositoryLayer.pdb
-C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\ServiceLayer.pdb
-C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\BCrypt.Net-Next.dll
-C:\Users\Franco\repos\instagramChallenge\instagram\InstagramChallenge\InstagramWebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

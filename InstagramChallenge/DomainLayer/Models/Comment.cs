@@ -8,6 +8,10 @@ namespace DomainLayer.Models
 {
     public class Comment : BaseEntity
     {
-        public string Message;
+        public string Message { get; set; }
+
+        public int PostId { get; set; }
+
+        public Post Post { get; set; } = null!;
     }
 }

@@ -15,12 +15,9 @@ namespace InstagramWebAPI.Controllers
     {
         private readonly IUserService _userService;
 
-        private readonly ApplicationDbContext _applicationDbContext;
-
-        public UserController (IUserService userService, ApplicationDbContext applicationDbContext)
+        public UserController (IUserService userService)
         {
             _userService = userService;
-            _applicationDbContext = applicationDbContext;
         }
 
         [Authorize]

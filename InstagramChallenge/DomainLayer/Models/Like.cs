@@ -8,7 +8,9 @@ namespace DomainLayer.Models
 {
     public class Like : BaseEntity
     {
-        public Post Post { get; set; }
+        public int PostId { get; set; }
+
+        public Post Post { get; set; } = null!;
 
         public User Liker { get; set; }
     }

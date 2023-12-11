@@ -9,7 +9,7 @@ namespace RepositoryLayer.IRepository
 {
     public interface IFollowsRepository : IRepository<Follows>
     {
-        public Follows GetFollowsByUsers(User followedUser, User followerUser);
+        public Follows GetFollowsByUsers(int followedUser, int followerUser);
 
         public IEnumerable<Follows> GetFollowersByUserId(int Id);
     }

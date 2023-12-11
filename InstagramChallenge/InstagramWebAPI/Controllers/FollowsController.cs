@@ -13,21 +13,18 @@ namespace InstagramWebAPI.Controllers
     {
         private readonly IFollowsService _followsService;
 
-        private readonly ApplicationDbContext _applicationDbContext;
-
-        public FollowsController(IFollowsService followsService, ApplicationDbContext applicationDbContext)
+        public FollowsController(IFollowsService followsService)
         {
             _followsService = followsService;
-            _applicationDbContext = applicationDbContext;
         }
 
         [Authorize]
         [HttpPost(nameof(FollowUnfollow))]
-        public IActionResult FollowUnfollow(User follower, User followed)
+        public IActionResult FollowUnfollow(int followerid, int followedid)
         {
-            if (follower != null && followed != null) 
+            if (followerid > 0 && followedid > 0) 
             {
-                _followsService.FollowUnfollow(follower, followed);
+                _followsService.FollowUnfollow(followerid, followedid);
 
                 return Ok("Following action executed successfully");
             }

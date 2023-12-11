@@ -11,9 +11,14 @@ namespace DomainLayer.Models
     {
         public string NickName { get; set; }
 
-        [Required]
-        public List<User> Followers { get; set; }
+        public List<Follows> Followers { get; set; }
 
         public Account Account { get; set; }
+
+        public List<Post> Posts { get; set; }
+
+        public int LikeId { get; set; }
+
+        public Like Like { get; set; } = null!;
     }
 }

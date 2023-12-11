@@ -16,11 +16,11 @@ namespace RepositoryLayer.Repository
         {
         }
         //This method returns the follow action between followedUser and followerUser in order to manage the follow/unfollow logic
-        public Follows GetFollowsByUsers(User followedUser, User followerUser)
+        public Follows GetFollowsByUsers(int followedUser, int followerUser)
         {
             //The owner or followedUser represents the user that receives a new follower
             //The follower or followerUser represents the user that is being added to the owner's followers list
-            return entities.SingleOrDefault(c => c.OwnerId == followedUser.Id && c.FollowerId == followerUser.Id);
+            return entities.SingleOrDefault(c => c.OwnerId == followedUser && c.FollowerId == followerUser);
         }
 
         //This method return a list of follower ids the user or owner has

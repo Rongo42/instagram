@@ -32,7 +32,7 @@ namespace ServiceLayer.CustomServices
             }
         }
 
-        public void FollowUnfollow(User follower, User followed)
+        public void FollowUnfollow(int follower, int followed)
         { 
             //Firstly we obtain the follow action via the two parties involved in it (follower, followed)
             var obj = _repository.GetFollowsByUsers(follower, followed);
@@ -50,8 +50,8 @@ namespace ServiceLayer.CustomServices
                 //composed by the ids provided from the method's parameters
                 Follows follows = new()
                 {
-                    OwnerId = followed.Id,
-                    FollowerId = follower.Id
+                    OwnerId = followed,
+                    FollowerId = follower
                 };
                 Insert(follows);
             }

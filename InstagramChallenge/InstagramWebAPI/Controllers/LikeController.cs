@@ -13,12 +13,9 @@ namespace InstagramWebAPI.Controllers
     {
         private readonly ILikeService _likeService;
 
-        private readonly ApplicationDbContext _applicationDbContext;
-
-        public LikeController(ILikeService likeService, ApplicationDbContext applicationDbContext)
+        public LikeController(ILikeService likeService)
         {
             _likeService = likeService;
-            _applicationDbContext = applicationDbContext;
         }
 
         [Authorize]

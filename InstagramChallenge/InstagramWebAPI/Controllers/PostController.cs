@@ -15,12 +15,9 @@ namespace InstagramWebAPI.Controllers
     {
         private readonly ICustomService<Post> _customService;
 
-        private readonly ApplicationDbContext _applicationDbContext;
-
-        public PostController (ICustomService<Post> customService, ApplicationDbContext applicationDbContext)
+        public PostController (ICustomService<Post> customService)
         {
             _customService = customService;
-            _applicationDbContext = applicationDbContext;
         }
 
         [Authorize]

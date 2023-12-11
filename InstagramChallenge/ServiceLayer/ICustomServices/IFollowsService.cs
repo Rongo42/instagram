@@ -9,7 +9,7 @@ namespace ServiceLayer.ICustomServices
 {
     public interface IFollowsService : ICustomService<Follows>
     {
-        public void FollowUnfollow(User follower, User followed);
+        public void FollowUnfollow(int follower, int followed);
 
         public IEnumerable<Follows> GetFollowersByUserId(int Id);
     }

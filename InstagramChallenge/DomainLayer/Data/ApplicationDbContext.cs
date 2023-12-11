@@ -1,4 +1,5 @@
-﻿using DomainLayer.Models;
+﻿using DomainLayer.Data.Configurations;
+using DomainLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,15 @@ namespace DomainLayer.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            //Database configuration implementing external classes for each entity
+            modelBuilder
+                .ApplyConfiguration(new AccountConfiguration())
+                .ApplyConfiguration(new CommentConfiguration())
+                .ApplyConfiguration(new FollowsConfiguration())
+                .ApplyConfiguration(new LikeConfiguration())
+                .ApplyConfiguration(new PostConfiguration())
+                .ApplyConfiguration(new UserConfiguration());
         }
 
         public DbSet <User> Users { get; set; }

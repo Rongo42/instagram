@@ -41,13 +41,19 @@ namespace DomainLayer.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(20)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Accounts");
                 });
@@ -66,10 +72,14 @@ namespace DomainLayer.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("PostId")
+                    b.Property<int>("PostId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -87,13 +97,24 @@ namespace DomainLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("FollowerId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Followss");
                 });
@@ -112,9 +133,6 @@ namespace DomainLayer.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LikerId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
@@ -122,8 +140,6 @@ namespace DomainLayer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LikerId");
 
                     b.HasIndex("PostId");
 
@@ -143,7 +159,7 @@ namespace DomainLayer.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -151,7 +167,7 @@ namespace DomainLayer.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("OwnerId")
+                    b.Property<int>("OwnerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -169,56 +185,70 @@ namespace DomainLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<int>("LikeId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NickName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("varchar(20)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("LikeId")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.Comment", b =>
+            modelBuilder.Entity("DomainLayer.Models.Account", b =>
                 {
-                    b.HasOne("DomainLayer.Models.Post", null)
-                        .WithMany("Comments")
-                        .HasForeignKey("PostId");
-                });
-
-            modelBuilder.Entity("DomainLayer.Models.Like", b =>
-                {
-                    b.HasOne("DomainLayer.Models.User", "Liker")
-                        .WithMany()
-                        .HasForeignKey("LikerId")
+                    b.HasOne("DomainLayer.Models.User", "User")
+                        .WithOne("Account")
+                        .HasForeignKey("DomainLayer.Models.Account", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Comment", b =>
+                {
                     b.HasOne("DomainLayer.Models.Post", "Post")
-                        .WithMany("Likes")
+                        .WithMany("Comments")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Liker");
+                    b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Follows", b =>
+                {
+                    b.HasOne("DomainLayer.Models.User", "Owner")
+                        .WithMany("Followers")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Like", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Post", "Post")
+                        .WithMany("Likes")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Post");
                 });
@@ -226,25 +256,29 @@ namespace DomainLayer.Migrations
             modelBuilder.Entity("DomainLayer.Models.Post", b =>
                 {
                     b.HasOne("DomainLayer.Models.User", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId");
+                        .WithMany("Posts")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.User", b =>
                 {
-                    b.HasOne("DomainLayer.Models.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
+                    b.HasOne("DomainLayer.Models.Like", "Like")
+                        .WithOne("Liker")
+                        .HasForeignKey("DomainLayer.Models.User", "LikeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DomainLayer.Models.User", null)
-                        .WithMany("Followers")
-                        .HasForeignKey("UserId");
+                    b.Navigation("Like");
+                });
 
-                    b.Navigation("Account");
+            modelBuilder.Entity("DomainLayer.Models.Like", b =>
+                {
+                    b.Navigation("Liker")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Post", b =>
@@ -256,7 +290,12 @@ namespace DomainLayer.Migrations
 
             modelBuilder.Entity("DomainLayer.Models.User", b =>
                 {
+                    b.Navigation("Account")
+                        .IsRequired();
+
                     b.Navigation("Followers");
+
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }
